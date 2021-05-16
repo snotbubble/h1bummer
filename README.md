@@ -17,6 +17,14 @@ save %h1bdata.rb d
 
 currently h1bummer is slow to load and filter, if it takes more than 20-seconds to do anything kill it and try with a smaller quarterly data set. 
 
+export is visible items only, in semi-colon csv format
+
+export saves to ./export.csv, *it will overwrite this file every time*, so rename if you want to keep it.
+
+tested with Linux only. 
+
+using default Gnome dark theme; it will look awful in other themes or in windows. hopefully a 100% draw based ui will solve this problem in future.
+
 # screenie
 ![screenie](210516_h1bummer_screenie_x700.png)
 
