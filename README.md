@@ -19,3 +19,9 @@ currently h1bummer is slow to load and filter, if it takes more than 20-seconds 
 
 # screenie
 ![screenie](210516_h1bummer_screenie_x700.png)
+
+# TODO
+- [ ] fix pay filter
+- [ ] add workplace address
+- [ ] add panel for raw data per selected item
+- [ ] grouped sorting (eg: sort by employer then by pay)
