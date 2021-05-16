@@ -30,6 +30,7 @@ using default Gnome dark theme; it will look awful in other themes or in windows
 
 # TODO
 - [ ] fix pay filter
+- [ ] clear list if filters yield 0 results
 - [ ] add workplace address
 - [ ] add panel for raw data per selected item
 - [ ] grouped sorting (eg: sort by employer then by pay)
