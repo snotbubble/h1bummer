@@ -15,7 +15,9 @@ save %h1bdata.rb d
 4. download h1bummer and [latest red](https://www.red-lang.org/p/download.html) to the same location
 5. run `./red-latest h1bummer.red`
 
-currently h1bummer is slow to load and filter, if it takes more than 20-seconds to do anything kill it and try with a smaller quarterly data set. 
+currently h1bummer is slow to load and filter, it may have to do a substring check of over 2 million strings... without using a low-level language, or multithreading. 
+
+if it takes more than 30-seconds to do anything kill it and try with a smaller quarterly data set. 
 
 export is visible items only, in semi-colon csv format
 
