@@ -1,4 +1,27 @@
+// stitch csv files together
+// by cpbrown 2023
+//
+// usage: ./stitchcsv file1.csv file2.csv file3.csv ...
+// hardcoded output to ./h1b.csv, this gets overwritten without warning
+
 using Gtk;
+string fixcsvrow (string r) {
+	if (r != null) {
+		bool k = true;
+		string o = r;
+		unichar h;
+		for (int i = 0; o.get_next_char (ref i, out h);) {
+			int s = i - 1;
+			if (h == '\"') {
+				if ( k == true ) { k = false; } else { k = true; }
+				o = o.splice(s, i, "");
+				i = i - 1;
+			}
+			if (h == ',' && k) { o = o.splice(s, i, ";"); }
+		}
+		return o;
+	} else { return ""; }
+}
 void main(string[] args) {
 	string dd = GLib.Environment.get_current_dir();
 	string[] o = {};
@@ -8,6 +31,7 @@ void main(string[] args) {
 	File argf;
 	if (args.length >= 1) {
 		for (int i = 1; i < args.length; i ++) {
+			bool rtd = false;
 			string ds = dd.concat("/",args[i]);
 			print("loading file = %s\n",ds);
 			argf = File.new_for_path (ds);
@@ -15,8 +39,21 @@ void main(string[] args) {
 				GLib.FileStream fstr = null;
 				fstr = FileStream.open(ds,"r");
 				string l = fstr.read_line();
+				if (l != null) {
+					string[] cols = l.split(";");
+					if (cols.length < 2) {
+						l = fixcsvrow(l);
+						rtd = true;
+					}
+				}
 				while (l != null) {
-					if (l != "") { o += l; } else { break; } 
+					if (l != "") { 
+						if (rtd) {
+							o += fixcsvrow(l);
+						} else {
+							o += l;
+						} 
+					} else { break; } 
 					l = fstr.read_line(); 
 				}
 			}
